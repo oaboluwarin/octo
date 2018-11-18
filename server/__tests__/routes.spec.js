@@ -23,6 +23,8 @@ describe('API', () => {
         .end((err, res) => {
           if (err) throw err;
           expect(res.body.length).toBe(3);
+          expect(Array.isArray(res.body)).toBe(true);
+          expect(res.body[0].name).toBe('Oreoluwade');
           done();
         });
     });

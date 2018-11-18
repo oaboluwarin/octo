@@ -1,21 +1,9 @@
 import express from 'express';
+import jsonData from '../helpers/users';
+
+const { users } = jsonData;
 
 const router = express.Router();
-
-const users = [
-  {
-    name: 'oreoluwade',
-    sex: 'male',
-  },
-  {
-    name: 'Folabomi',
-    sex: 'female',
-  },
-  {
-    name: 'Pelumi',
-    sex: 'Male',
-  },
-];
 
 router.get('/all', (req, res) => {
   res.send(users);

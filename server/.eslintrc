@@ -1,0 +1,4 @@
+{
+  "config": ["airbnb"],
+  "plugins": ["import"]
+}

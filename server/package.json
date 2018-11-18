@@ -19,7 +19,7 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "start": "babel-watch server.js",
+    "start": "babel-watch server.js || true",
     "lint": "eslint . --ext .js",
     "test": "jest --coverage || true"
   },

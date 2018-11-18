@@ -5,12 +5,16 @@ const router = express.Router();
 const users = [
   {
     name: 'oreoluwade',
-    sex: 'male'
+    sex: 'male',
   },
   {
     name: 'Folabomi',
-    sex: 'female'
-  }
+    sex: 'female',
+  },
+  {
+    name: 'Pelumi',
+    sex: 'Male',
+  },
 ];
 
 router.get('/all', (req, res) => {

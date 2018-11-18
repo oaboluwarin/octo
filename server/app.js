@@ -8,7 +8,7 @@ app.use(logger('dev'));
 
 app.get('/', (req, res) => {
   return res.json({ message: 'Welcome to octo' });
-})
+});
 
 app.use('/user', userRouter);
 

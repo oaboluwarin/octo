@@ -1,0 +1,30 @@
+{
+  "name": "octo",
+  "version": "1.0.0",
+  "description": "A NodeJS based app from dev to deployment",
+  "main": "index.js",
+  "dependencies": {
+    "express": "^4.16.4",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-watch": "^2.0.7"
+  },
+  "scripts": {
+    "start": "babel-watch server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/oaboluwarin/octo.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/oaboluwarin/octo/issues"
+  },
+  "homepage": "https://github.com/oaboluwarin/octo#readme"
+}

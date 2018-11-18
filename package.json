@@ -1,5 +1,5 @@
 {
-  "name": "octo-server",
+  "name": "octo",
   "version": "1.0.0",
   "description": "A NodeJS based app from dev to deployment",
   "main": "index.js",
@@ -19,8 +19,6 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "start": "babel-watch server.js",
-    "lint": "eslint . --ext .js",
     "test": "jest --coverage || true"
   },
   "repository": {

@@ -3,6 +3,7 @@ import { usersController } from '../controllers';
 
 const {
   login,
+  loginForm,
   register,
   registerForm,
   fetchDummyUsers,
@@ -14,7 +15,8 @@ router.route('/all')
   .get(fetchDummyUsers);
 
 router.route('/login')
-  .get(login);
+  .get(login)
+  .post(loginForm);
 
 router.route('/register')
   .get(registerForm)

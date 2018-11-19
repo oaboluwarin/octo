@@ -1,7 +1,7 @@
 /* eslint-disable no-param-reassign */
 import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
-// import passport from 'passport';
+import passport from 'passport';
 import '../models/User';
 import jsonData from '../helpers/users';
 
@@ -16,6 +16,13 @@ export default {
   },
   login(req, res) {
     res.render('users/login');
+  },
+  loginForm(req, res, next) {
+    passport.authenticate('local', {
+      successRedirect: '/ideas',
+      failureRedirect: '/users/login',
+      failureFlash: true
+    })(req, res, next);
   },
   registerForm(req, res) {
     res.render('users/register');

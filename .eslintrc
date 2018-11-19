@@ -3,5 +3,9 @@
   "plugins": ["import"],
   "env": {
     "jest": true
+  },
+  "rules": {
+    "comma-dangle": "off",
+    "arrow-parens": "off"
   }
 }

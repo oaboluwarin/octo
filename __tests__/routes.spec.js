@@ -10,15 +10,15 @@ describe('API', () => {
         .expect(200)
         .end((err, res) => {
           if (err) throw err;
-          expect(res.body.message).toBe('Welcome to octo');
+          expect(res.body.message).toBe('Welcome to OctoJot');
           done();
         });
     });
   });
 
-  describe('/user', () => {
-    it('fetches all the users on the /user/all route', (done) => {
-      request.get('/user/all')
+  describe('/users', () => {
+    it('fetches all the users on the /users/all route', (done) => {
+      request.get('/users/all')
         .expect(200)
         .end((err, res) => {
           if (err) throw err;

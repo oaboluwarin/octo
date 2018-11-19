@@ -1,6 +1,8 @@
+/* eslint-disable no-param-reassign */
  /* eslint-disable no-console */
 import express from 'express';
 import logger from 'morgan';
+import methodOverride from 'method-override';
 import exphbs from 'express-handlebars';
 import mongoose from 'mongoose';
 import { userRouter } from './routes';
@@ -23,6 +25,7 @@ const Idea = mongoose.model('ideas');
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(methodOverride('_method'));
 
 // Template engine config
 app.engine('handlebars', exphbs({
@@ -89,6 +92,37 @@ app.post('/ideas', (req, res) => {
     })
     .catch(err => {
       console.log(err);
+    });
+});
+
+// Edit form process
+app.put('/ideas/:id', (req, res) => {
+  const {
+    params: { id },
+    body: { title, details }
+  } = req;
+
+  Idea.findOne({
+    _id: id
+  })
+    .then(idea => {
+      idea.title = title;
+      idea.details = details;
+      idea.save()
+        .then(() => {
+          res.redirect('/ideas');
+        });
+    });
+});
+
+// Delete Idea
+app.delete('/ideas/:id', (req, res) => {
+  const { id } = req.params;
+  Idea.remove({
+    _id: id
+  })
+    .then(() => {
+      res.redirect('/ideas');
     });
 });
 

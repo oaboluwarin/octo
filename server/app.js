@@ -7,7 +7,7 @@ import exphbs from 'express-handlebars';
 import mongoose from 'mongoose';
 import flash from 'connect-flash';
 import session from 'express-session';
-import { usersRouter, ideasRouter } from './routes';
+import { usersRouter, ideasRouter, homeRouter, aboutRouter } from './routes';
 
 // initialize app
 const app = express();
@@ -51,21 +51,10 @@ app.set('view engine', 'handlebars');
 // Routes section
 app.get('/', (req, res) => res.json({ message: 'Welcome to OctoJot' }));
 
-app.get('/home', (req, res) => {
-  const title = 'Home';
-  res.render('home', {
-    title,
-  });
-});
-
-app.get('/about', (req, res) => {
-  const title = 'About';
-  res.render('about', {
-    title,
-  });
-});
-
 app.use('/users', usersRouter);
 app.use('/ideas', ideasRouter);
+app.use('/home', homeRouter);
+app.use('/about', aboutRouter);
+
 
 export default app;

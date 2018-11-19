@@ -59,6 +59,18 @@ app.get('/ideas/add', (req, res) => {
   res.render('ideas/add');
 });
 
+// Edit ideas form
+app.get('/ideas/edit/:id', (req, res) => {
+  const { id } = req.params;
+  Idea.findOne({
+    _id: id
+  })
+    .then(idea => {
+      console.log('THE IDEA', idea);
+      res.render('ideas/edit', { idea });
+    });
+});
+
 // Process Form
 app.post('/ideas', (req, res) => {
   const errors = [];

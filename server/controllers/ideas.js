@@ -72,5 +72,4 @@ export default {
         res.redirect('/ideas');
       });
   }
-}
-
+};

@@ -7,20 +7,20 @@ const Idea = mongoose.model('ideas');
 
 export default {
   getAllIdeas(req, res) {
-    Idea.find({})
+    Idea.find({user: req.user.id })
       .sort({ date: 'desc' })
       .then(ideas => res.render('ideas/index', { ideas }));
   },
   addNewIdea(req, res) {
     const errors = [];
-    const { title, details } = req.body;
+    const { body: { title, details }, user } = req;
     if (!title) errors.push({ text: 'Please, add a title' });
     if (!details) errors.push({ text: 'Please, add details' });
 
     if (errors.length) {
       return res.render('ideas/add', { errors, title, details });
     }
-    const newUser = { title, details };
+    const newUser = { title, details, user: user.id };
     return new Idea(newUser)
       .save()
       .then(() => {
@@ -59,7 +59,11 @@ export default {
       _id: id
     })
       .then(idea => {
-        res.render('ideas/edit', { idea });
+        if (idea.user !== req.user.id) {
+          req.flash('error_msg', 'Not authorized');
+          return res.redirect('/ideas');
+        }
+        return res.render('ideas/edit', { idea });
       });
   },
   deleteIdea(req, res) {

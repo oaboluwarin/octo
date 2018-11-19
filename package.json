@@ -30,7 +30,10 @@
     "supertest": "^3.3.0"
   },
   "scripts": {
-    "start": "babel-node server/server.js",
+    "clean": "rm -rf build && mkdir build",
+    "build-babel": "babel -d ./build ./server -s",
+    "build": "npm run clean && npm run build-babel",
+    "start": "npm run build && node ./build/server.js",
     "start:dev": "babel-watch server/server.js || true",
     "lint": "eslint . --ext .js",
     "test": "jest --coverage || true"

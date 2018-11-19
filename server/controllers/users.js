@@ -3,9 +3,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcryptjs';
 import passport from 'passport';
 import '../models/User';
-import jsonData from '../helpers/users';
-
-const { users } = jsonData;
+import users from '../helpers/users';
 
 // Load Idea model
 const User = mongoose.model('users');

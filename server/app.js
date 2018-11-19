@@ -5,6 +5,8 @@ import logger from 'morgan';
 import methodOverride from 'method-override';
 import exphbs from 'express-handlebars';
 import mongoose from 'mongoose';
+import flash from 'connect-flash';
+import session from 'express-session';
 import { userRouter } from './routes';
 import './models/Idea';
 
@@ -26,6 +28,23 @@ app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(methodOverride('_method'));
+
+// Express session middleware
+app.use(session({
+  secret: 'SECRET',
+  resave: true,
+  saveUninitialized: true,
+}));
+
+app.use(flash());
+
+// Global variables
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  next();
+});
 
 // Template engine config
 app.engine('handlebars', exphbs({
@@ -88,6 +107,7 @@ app.post('/ideas', (req, res) => {
   return new Idea(newUser)
     .save()
     .then(() => {
+      req.flash('success_msg', 'Idea added');
       res.redirect('/ideas');
     })
     .catch(err => {
@@ -109,7 +129,8 @@ app.put('/ideas/:id', (req, res) => {
       idea.title = title;
       idea.details = details;
       idea.save()
-        .then(() => {
+        .then((updatedIdea) => {
+          req.flash('success_msg', `${updatedIdea.title} updated`);
           res.redirect('/ideas');
         });
     });
@@ -122,6 +143,7 @@ app.delete('/ideas/:id', (req, res) => {
     _id: id
   })
     .then(() => {
+      req.flash('success_msg', 'Idea removed');
       res.redirect('/ideas');
     });
 });

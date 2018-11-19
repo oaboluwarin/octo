@@ -31,10 +31,10 @@
   },
   "scripts": {
     "clean": "rm -rf build && mkdir build",
-    "build-babel": "babel -d ./build ./server -s",
+    "build-babel": "babel . --ignore node_modules,build --out-dir build",
     "build": "npm run clean && npm run build-babel",
     "start": "npm run build && node ./build/server.js",
-    "start:dev": "babel-watch server/server.js || true",
+    "start:dev": "babel-watch server.js || true",
     "lint": "eslint . --ext .js",
     "test": "jest --coverage || true"
   },

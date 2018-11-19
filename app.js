@@ -69,11 +69,11 @@ app.engine('handlebars', exphbs({
 app.set('view engine', 'handlebars');
 
 // Routes section
-app.get('/', (req, res) => res.json({ message: 'Welcome to OctoJot' }));
+// app.get('/', (req, res) => res.json({ message: 'Welcome to OctoJot' }));
 
 app.use('/users', usersRouter);
 app.use('/ideas', ideasRouter);
-app.use('/home', homeRouter);
+app.use('/', homeRouter);
 app.use('/about', aboutRouter);
 
 export default app;

@@ -1,8 +1,8 @@
 const databaseFunction = () => {
   if (process.env.NODE_ENV === 'production') {
-    return { mongoURI: 'mongodb://oreoluwade:aster01d@ds229648.mlab.com:29648/octojot-prod' };
+    return { mongoURI: process.env.PRODUCTION_DB_URI };
   }
-  return { mongoURI: 'mongodb://localhost/octojot-dev' };
+  return { mongoURI: process.env.DEV_DB_URI };
 };
 
 export default databaseFunction;

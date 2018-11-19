@@ -6,6 +6,7 @@ import methodOverride from 'method-override';
 import exphbs from 'express-handlebars';
 import mongoose from 'mongoose';
 import passport from 'passport';
+import dotenv from 'dotenv';
 import path from 'path';
 import flash from 'connect-flash';
 import session from 'express-session';
@@ -17,6 +18,8 @@ import {
 } from './routes';
 import passportFunction from './config/passport';
 import databaseFunction from './config/database';
+
+dotenv.config();
 
 passportFunction(passport);
 

@@ -16,14 +16,16 @@ import {
   aboutRouter
 } from './routes';
 import passportFunction from './config/passport';
+import databaseFunction from './config/database';
 
 passportFunction(passport);
 
+const DB_URI = databaseFunction().mongoURI;
 // initialize app
 const app = express();
 
 // Connect mongoose
-mongoose.connect('mongodb://localhost/octojot-dev', {
+mongoose.connect(DB_URI, {
   useNewUrlParser: true,
 })
   .then(() => console.log('MongoDB connected...'))

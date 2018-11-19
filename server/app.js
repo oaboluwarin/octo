@@ -5,6 +5,7 @@ import logger from 'morgan';
 import methodOverride from 'method-override';
 import exphbs from 'express-handlebars';
 import mongoose from 'mongoose';
+import passport from 'passport';
 import path from 'path';
 import flash from 'connect-flash';
 import session from 'express-session';
@@ -14,6 +15,9 @@ import {
   homeRouter,
   aboutRouter
 } from './routes';
+import passportFunction from './config/passport';
+
+passportFunction(passport);
 
 // initialize app
 const app = express();

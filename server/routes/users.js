@@ -4,6 +4,7 @@ import { usersController } from '../controllers';
 const {
   login,
   loginForm,
+  logUserOut,
   register,
   registerForm,
   fetchDummyUsers,
@@ -21,5 +22,8 @@ router.route('/login')
 router.route('/register')
   .get(registerForm)
   .post(register);
+
+router.route('/logout')
+  .get(logUserOut);
 
 export default router;

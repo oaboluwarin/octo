@@ -5,9 +5,15 @@ import logger from 'morgan';
 import methodOverride from 'method-override';
 import exphbs from 'express-handlebars';
 import mongoose from 'mongoose';
+import path from 'path';
 import flash from 'connect-flash';
 import session from 'express-session';
-import { usersRouter, ideasRouter, homeRouter, aboutRouter } from './routes';
+import {
+  usersRouter,
+  ideasRouter,
+  homeRouter,
+  aboutRouter
+} from './routes';
 
 // initialize app
 const app = express();
@@ -23,6 +29,9 @@ mongoose.connect('mongodb://localhost/octojot-dev', {
 app.use(logger('dev'));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 app.use(methodOverride('_method'));
 
 // Express session middleware
@@ -55,6 +64,5 @@ app.use('/users', usersRouter);
 app.use('/ideas', ideasRouter);
 app.use('/home', homeRouter);
 app.use('/about', aboutRouter);
-
 
 export default app;

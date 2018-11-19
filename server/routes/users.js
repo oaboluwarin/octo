@@ -1,23 +1,17 @@
 import express from 'express';
-import jsonData from '../helpers/users';
+import { usersController } from '../controllers';
 
-const { users } = jsonData;
+const { login, register, fetchDummyUsers } = usersController;
 
 const router = express.Router();
 
 router.route('/all')
-  .get((req, res) => {
-    res.send(users);
-  });
+  .get(fetchDummyUsers);
 
 router.route('/login')
-  .get((req, res) => {
-    res.send('login');
-  });
+  .get(login);
 
 router.route('/register')
-  .get((req, res) => {
-    res.send('register');
-  });
+  .get(register);
 
 export default router;

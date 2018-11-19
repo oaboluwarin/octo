@@ -1,5 +1,8 @@
 import express from 'express';
 import { ideasController } from '../controllers';
+import authorization from '../middlewares';
+
+const { ensureAuthenticated } = authorization;
 
 const router = express.Router();
 
@@ -13,18 +16,20 @@ const {
 } = ideasController;
 
 router.route('/')
+  .all(ensureAuthenticated)
   .get(getAllIdeas)
   .post(addNewIdea);
 
 // Add ideas form
 router.route('/add')
-  .get(postIdeasForm);
+  .get(ensureAuthenticated, postIdeasForm);
 
 // Edit ideas form
 router.route('/edit/:id')
-  .get(editIdeaForm);
+  .get(ensureAuthenticated, editIdeaForm);
 
 router.route('/:id')
+  .all(ensureAuthenticated)
   .put(editIdea)
   .delete(deleteIdea);
 

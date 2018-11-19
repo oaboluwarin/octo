@@ -1,6 +1,9 @@
 {
   "name": "octo-server",
   "version": "1.0.0",
+  "engines": {
+    "node": "9.11.1"
+  },
   "description": "A NodeJS based app from dev to deployment",
   "main": "index.js",
   "dependencies": {

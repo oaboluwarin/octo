@@ -1,1 +1,3 @@
-export { default as userRouter } from './user';
+export { default as usersRouter } from './users';
+export { default as ideasRouter } from './ideas';
+
